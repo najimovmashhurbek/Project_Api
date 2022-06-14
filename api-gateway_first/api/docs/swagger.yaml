@@ -1,0 +1,180 @@
+definitions:
+  v1.Adress:
+    properties:
+      city:
+        type: string
+      country:
+        description: |-
+          Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+          UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id"`
+        type: string
+      district:
+        type: string
+      postal_codes:
+        type: integer
+    type: object
+  v1.Media:
+    properties:
+      link:
+        type: string
+      type:
+        description: Id                   string   `protobuf:"bytes,1,opt,name=id,proto3"
+          json:"id"`
+        type: string
+    type: object
+  v1.Post:
+    properties:
+      description:
+        type: string
+      medias:
+        description: UserId               string   `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3"
+          json:"user_id"`
+        items:
+          $ref: '#/definitions/v1.Media'
+        type: array
+      name:
+        description: Id                   string   `protobuf:"bytes,1,opt,name=id,proto3"
+          json:"id"`
+        type: string
+    type: object
+  v1.User:
+    properties:
+      adress:
+        items:
+          $ref: '#/definitions/v1.Adress'
+        type: array
+      bio:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      name:
+        description: Id                   string    `protobuf:"bytes,1,opt,name=id,proto3"
+          json:"id"`
+        type: string
+      phone_numbers:
+        items:
+          type: string
+        type: array
+      post:
+        items:
+          $ref: '#/definitions/v1.Post'
+        type: array
+      status:
+        type: string
+      update_at:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/users:
+    get:
+      description: This api is using for getting users list
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: page
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get user summary
+      tags:
+      - user
+    post:
+      description: This api is using for creating new user
+      parameters:
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/v1.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Create user summary
+      tags:
+      - user
+  /v1/users/{id}:
+    delete:
+      description: This api is using for deleting user
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Delete user summary
+      tags:
+      - user
+    get:
+      description: This api is using for getting user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get user summary
+      tags:
+      - user
+    put:
+      description: This api is using for updating new user
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/v1.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Update user summary
+      tags:
+      - user
+swagger: "2.0"

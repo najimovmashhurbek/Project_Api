@@ -1,0 +1,264 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/v1/users": {
+            "get": {
+                "description": "This api is using for getting users list",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get user summary",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "limit",
+                        "name": "limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "page",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "This api is using for creating new user",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create user summary",
+                "parameters": [
+                    {
+                        "description": "user body",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/users/{id}": {
+            "get": {
+                "description": "This api is using for getting user by id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get user summary",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "This api is using for updating new user",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Update user summary",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "user body",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "This api is using for deleting user",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Delete user summary",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "v1.Adress": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "description": "Id                   string   `protobuf:\"bytes,1,opt,name=id,proto3\" json:\"id\"`\nUserId               string   `protobuf:\"bytes,2,opt,name=user_id,json=userId,proto3\" json:\"user_id\"`",
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "postal_codes": {
+                    "type": "integer"
+                }
+            }
+        },
+        "v1.Media": {
+            "type": "object",
+            "properties": {
+                "link": {
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Id                   string   `protobuf:\"bytes,1,opt,name=id,proto3\" json:\"id\"`",
+                    "type": "string"
+                }
+            }
+        },
+        "v1.Post": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "medias": {
+                    "description": "UserId               string   `protobuf:\"bytes,4,opt,name=user_id,json=userId,proto3\" json:\"user_id\"`",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1.Media"
+                    }
+                },
+                "name": {
+                    "description": "Id                   string   `protobuf:\"bytes,1,opt,name=id,proto3\" json:\"id\"`",
+                    "type": "string"
+                }
+            }
+        },
+        "v1.User": {
+            "type": "object",
+            "properties": {
+                "adress": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1.Adress"
+                    }
+                },
+                "bio": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Id                   string    `protobuf:\"bytes,1,opt,name=id,proto3\" json:\"id\"`",
+                    "type": "string"
+                },
+                "phone_numbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "post": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1.Post"
+                    }
+                },
+                "status": {
+                    "type": "string"
+                },
+                "update_at": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
