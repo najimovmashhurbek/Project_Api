@@ -7,45 +7,47 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	pb "github.com/najimovmashhurbek/project-api/api-gateway.ozim/genproto"
-	l "github.com/najimovmashhurbek/project-api/api-gateway.ozim/pkg/logger"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/pkg/utils"
+	pb "github.com/najimovmashhurbek/Project_Api/api-gateway_first/genproto"
+	l "github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/utils"
 	"google.golang.org/protobuf/encoding/protojson"
 )
-type User struct{
+
+type User struct {
 	//Id                   string    `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	Name                 string    `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
-	FirstName            string    `protobuf:"bytes,3,opt,name=firstName,proto3" json:"first_name"`
-	LastName             string    `protobuf:"bytes,4,opt,name=lastName,proto3" json:"last_name"`
-	Bio                  string    `protobuf:"bytes,6,opt,name=bio,proto3" json:"bio"`
-	PhoneNumbers         []string  `protobuf:"bytes,7,rep,name=phoneNumbers,proto3" json:"phone_numbers"`
-	Status               string    `protobuf:"bytes,8,opt,name=status,proto3" json:"status"`
-	CreatedAt            string    `protobuf:"bytes,9,opt,name=createdAt,proto3" json:"created_at"`
-	UpdateAt             string    `protobuf:"bytes,10,opt,name=updateAt,proto3" json:"update_at"`
-	DeletedAt            string    `protobuf:"bytes,11,opt,name=deletedAt,proto3" json:"deleted_at"`
-	Adress               []Adress `protobuf:"bytes,12,rep,name=adress,proto3" json:"adress"`
-	Post                 []Post   `protobuf:"bytes,13,rep,name=post,proto3" json:"post"`
+	Name         string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	FirstName    string   `protobuf:"bytes,3,opt,name=firstName,proto3" json:"first_name"`
+	LastName     string   `protobuf:"bytes,4,opt,name=lastName,proto3" json:"last_name"`
+	Bio          string   `protobuf:"bytes,6,opt,name=bio,proto3" json:"bio"`
+	PhoneNumbers []string `protobuf:"bytes,7,rep,name=phoneNumbers,proto3" json:"phone_numbers"`
+	Status       string   `protobuf:"bytes,8,opt,name=status,proto3" json:"status"`
+	CreatedAt    string   `protobuf:"bytes,9,opt,name=createdAt,proto3" json:"created_at"`
+	UpdateAt     string   `protobuf:"bytes,10,opt,name=updateAt,proto3" json:"update_at"`
+	DeletedAt    string   `protobuf:"bytes,11,opt,name=deletedAt,proto3" json:"deleted_at"`
+	Adress       []Adress `protobuf:"bytes,12,rep,name=adress,proto3" json:"adress"`
+	Post         []Post   `protobuf:"bytes,13,rep,name=post,proto3" json:"post"`
 }
 type Adress struct {
 	//Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	//UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id"`
-	Country              string   `protobuf:"bytes,3,opt,name=country,proto3" json:"country"`
-	City                 string   `protobuf:"bytes,4,opt,name=city,proto3" json:"city"`
-	District             string   `protobuf:"bytes,5,opt,name=district,proto3" json:"district"`
-	PostalCodes          int64    `protobuf:"varint,6,opt,name=postalCodes,proto3" json:"postal_codes"`
+	Country     string `protobuf:"bytes,3,opt,name=country,proto3" json:"country"`
+	City        string `protobuf:"bytes,4,opt,name=city,proto3" json:"city"`
+	District    string `protobuf:"bytes,5,opt,name=district,proto3" json:"district"`
+	PostalCodes int64  `protobuf:"varint,6,opt,name=postalCodes,proto3" json:"postal_codes"`
 }
 type Post struct {
 	//Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
-	Description          string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description"`
+	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description"`
 	//UserId               string   `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id"`
-	Medias               []Media `protobuf:"bytes,5,rep,name=medias,proto3" json:"medias"`
+	Medias []Media `protobuf:"bytes,5,rep,name=medias,proto3" json:"medias"`
 }
 type Media struct {
 	//Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	Type                 string   `protobuf:"bytes,2,opt,name=type,proto3" json:"type"`
-	Link                 string   `protobuf:"bytes,3,opt,name=link,proto3" json:"link"`
+	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type"`
+	Link string `protobuf:"bytes,3,opt,name=link,proto3" json:"link"`
 }
+
 // CreateUser creates user
 // @Summary Create user summary
 // @Description This api is using for creating new user
@@ -54,7 +56,7 @@ type Media struct {
 // @Produce json
 // @Success 200 {string} Succes
 // @Param user body User  true "user body"
-// @Router /v1/users [post] 
+// @Router /v1/users [post]
 func (h *handlerV1) CreateUser(c *gin.Context) {
 	var (
 		body        pb.User

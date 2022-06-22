@@ -2,11 +2,11 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "github.com/najimovmashhurbek/project-api/api-gateway.ozim/api/handlers/v1"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/config"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/pkg/logger"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/services"
-	_ "github.com/najimovmashhurbek/project-api/api-gateway.ozim/api/docs" //swag
+	_ "github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/docs" //swag
+	v1 "github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/handlers/v1"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/config"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/services"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )

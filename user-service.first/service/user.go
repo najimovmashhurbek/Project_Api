@@ -5,12 +5,12 @@ import (
 	_ "errors"
 
 	"github.com/jmoiron/sqlx"
-	pb "github.com/najimovmashhurbek/project-api/user-service.ozim/genproto"
-	l "github.com/najimovmashhurbek/project-api/user-service.ozim/pkg/logger"
-	"github.com/najimovmashhurbek/project-api/user-service.ozim/storage"
+	pb "github.com/najimovmashhurbek/Project_Api/user-service.first/genproto"
+	l "github.com/najimovmashhurbek/Project_Api/user-service.first/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/user-service.first/storage"
 
 	//"golang.org/x/vuln/client"
-	cl "github.com/najimovmashhurbek/project-api/user-service.ozim/service/grpc_client"
+	cl "github.com/najimovmashhurbek/Project_Api/user-service.first/service/grpc_client"
 )
 
 //UserService ...
@@ -29,7 +29,7 @@ func NewUserService(db *sqlx.DB, log l.Logger, client cl.GrpcClientI) *UserServi
 	}
 }
 
-func (s *UserService) CreateUser(ctx context.Context, req *pb.User) (*pb.CreatePostRes, error) {
+func (s *UserService) CreateUser(ctx context.Context, req *pb.User) (*pb.User, error) {
 	/*id, err := uuid.NewV4()
 	if err != nil {
 		return nil, err
@@ -40,9 +40,9 @@ func (s *UserService) CreateUser(ctx context.Context, req *pb.User) (*pb.CreateP
 	if err != nil {
 		return nil, err
 	}
-	if req.Adress!=nil{
-		for _,adres:=range req.Adress{
-			adres.UserId=req.Id
+	if req.Adress != nil {
+		for _, adres := range req.Adress {
+			adres.UserId = req.Id
 		}
 	}
 	if req.Post != nil {

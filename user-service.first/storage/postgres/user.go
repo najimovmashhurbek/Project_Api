@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/lib/pq"
-	pb "github.com/najimovmashhurbek/project-api/user-service.ozim/genproto"
+	pb "github.com/najimovmashhurbek/Project_Api/user-service.first/genproto"
 	//"google.golang.org/grpc/internal/status"
 )
 
@@ -19,24 +19,42 @@ func NewUserRepo(db *sqlx.DB) *userRepo {
 	return &userRepo{db: db}
 }
 
-func (r *userRepo) CreateUser(user *pb.User) (*pb.CreatePostRes, error) {
-	query := "insert into users (id,name,firstName,lastName,bio,phoneNumbers,createdAt,status) values ($1,$2,$3,$4,$5,$6,$7,$8)"
+func (r *userRepo) CreateUser(user *pb.User) (*pb.User, error) {
+	userr := pb.User{}
+	query := "insert into users (id,name,firstName,lastName,bio,phoneNumbers,createdAt,status) values ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id,name,firstName,lastName,bio,createdAt,status"
 	time := time.Now()
 	id := uuid.New()
-	_, err := r.db.Exec(query, id, user.Name, user.FirstName, user.LastName, user.Bio, pq.Array(user.PhoneNumbers), time, user.Status)
+	err := r.db.QueryRow(query, id, user.Name, user.FirstName, user.LastName, user.Bio, pq.Array(user.PhoneNumbers), time, user.Status).Scan(
+		&userr.Id,
+		&userr.Name,
+		&userr.FirstName,
+		&userr.LastName,
+		&userr.Bio,
+		&userr.CreatedAt,
+		&userr.Status,
+	)
 	if err != nil {
 		return nil, err
 	}
 	//defer r.db.Close()
+	adress:=pb.Adress{}
 	for _, adres := range user.Adress {
 		adid := uuid.New()
-		query1 := "insert into adress (id,users_id,country,city,district,postalCodes) values ($1,$2,$3,$4,$5,$6)"
-		_, err := r.db.Exec(query1, adid, id, adres.Country, adres.City, adres.District, adres.PostalCodes)
+		query1 := "insert into adress (id,users_id,country,city,district,postalCodes) values ($1,$2,$3,$4,$5,$6) RETURNING id,users_id,country,city,district,postalCodes"
+		err := r.db.QueryRow(query1, adid, id, adres.Country, adres.City, adres.District, adres.PostalCodes).Scan(
+			&adress.Id,
+			&adress.UserId,
+			&adress.Country,
+			&adress.City,
+			&adress.District,
+			&adress.PostalCodes,
+		)
 		if err != nil {
 			return nil, err
 		}
+		userr.Adress=append(userr.Adress,&adress)
 	}
-	return &pb.CreatePostRes{Status: true}, nil
+	return &userr, nil
 }
 
 func (r *userRepo) DeleteUser(delete *pb.DeleteById) (*pb.DeleteUserRes, error) {

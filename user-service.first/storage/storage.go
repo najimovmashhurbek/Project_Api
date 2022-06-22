@@ -2,8 +2,8 @@ package storage
 
 import (
 	"github.com/jmoiron/sqlx"
-	"github.com/najimovmashhurbek/project-api/user-service.ozim/storage/postgres"
-	"github.com/najimovmashhurbek/project-api/user-service.ozim/storage/repo"
+	"github.com/najimovmashhurbek/Project_Api/user-service.first/storage/postgres"
+	"github.com/najimovmashhurbek/Project_Api/user-service.first/storage/repo"
 )
 
 //IStorage ...

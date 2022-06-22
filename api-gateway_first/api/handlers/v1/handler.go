@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/config"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/pkg/logger"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/services"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/config"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/services"
 )
 
 type handlerV1 struct {

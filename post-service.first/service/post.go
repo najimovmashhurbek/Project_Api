@@ -4,9 +4,9 @@ import (
 	"context"
 
 	"github.com/jmoiron/sqlx"
-	pb "github.com/najimovmashhurbek/project-api/post-service.ozim/genproto"
-	l "github.com/najimovmashhurbek/project-api/post-service.ozim/pkg/logger"
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/storage"
+	pb "github.com/najimovmashhurbek/Project_Api/post-service.first/genproto"
+	l "github.com/najimovmashhurbek/Project_Api/post-service.first/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/storage"
 )
 
 //UserService ...
@@ -23,7 +23,7 @@ func NewPostService(db *sqlx.DB, log l.Logger) *PostService {
 	}
 }
 
-func (s *PostService) CreatePost(ctx context.Context, req *pb.Post) (*pb.CreatePostsRes, error) {
+func (s *PostService) CreatePost(ctx context.Context, req *pb.Post) (*pb.Post, error) {
 	post, err := s.storage.Post().CreatePost(req)
 	if err != nil {
 		return nil, err

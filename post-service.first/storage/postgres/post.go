@@ -7,7 +7,7 @@ import (
 	"github.com/jmoiron/sqlx"
 
 	//"github.com/lib/pq"
-	pb "github.com/najimovmashhurbek/project-api/post-service.ozim/genproto"
+	pb "github.com/najimovmashhurbek/Project_Api/post-service.first/genproto"
 	//"google.golang.org/grpc/internal/status"
 )
 
@@ -20,25 +20,35 @@ func NewUserRepo(db *sqlx.DB) *postRepo {
 	return &postRepo{db: db}
 }
 
-func (r *postRepo) CreatePost(post *pb.Post) (*pb.CreatePostsRes, error) {
-	query := "insert into posts (id,name,description,user_id) values ($1,$2,$3,$4)"
+func (r *postRepo) CreatePost(post *pb.Post) (*pb.Post, error) {
+	posts := pb.Post{}
+	query := "insert into posts (id,name,description,user_id) values ($1,$2,$3,$4) RETURNING id,name,description,user_id"
 	id := uuid.New()
-	_, err := r.db.Exec(query, id, post.Name, post.Description, post.UserId)
+	err := r.db.QueryRow(query, id, post.Name, post.Description, post.UserId).Scan(
+		&posts.Id,
+		&posts.Name,
+		&posts.Description,
+		&posts.UserId,
+	)
 	if err != nil {
 		return nil, err
 	}
 	//defer r.db.Close()
+	medias := pb.Medias{}
 	for _, media := range post.Medias {
 		adid := uuid.New()
-		query1 := "insert into medias (id,link,posts_id) values ($1,$2,$3)"
-		_, err := r.db.Exec(query1, adid, media.Link, id)
+		query1 := "insert into medias (id,link,posts_id) values ($1,$2,$3) RETURNING id,link,posts_id"
+		err := r.db.QueryRow(query1, adid, media.Link, id).Scan(
+			&medias.Id,
+			&medias.Link,
+			&medias.PostsId,
+		)
 		if err != nil {
 			return nil, err
 		}
+		posts.Medias = append(post.Medias, &medias)
 	}
-	return &pb.CreatePostsRes{
-		Status: true,
-	}, nil
+	return &posts, nil
 }
 
 func (r *postRepo) DeletePost(delete *pb.DeleteByPostId) (*pb.DeletePostRes, error) {

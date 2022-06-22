@@ -5,9 +5,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/config"
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/pkg/db"
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/config"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/pkg/db"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/pkg/logger"
 )
 
 var repoI *postRepo

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	pb "github.com/najimovmashhurbek/project-api/post-service.ozim/genproto"
+	pb "github.com/najimovmashhurbek/Project_Api/post-service.first/genproto"
 )
 
 func TestPostRepo_Create(t *testing.T) {

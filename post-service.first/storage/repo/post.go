@@ -1,12 +1,12 @@
 package repo
 
 import (
-	pb "github.com/najimovmashhurbek/project-api/post-service.ozim/genproto"
+	pb "github.com/najimovmashhurbek/Project_Api/post-service.first/genproto"
 )
 
 //UserStorageI ...
 type PostStorageI interface {
-	CreatePost(*pb.Post) (*pb.CreatePostsRes, error)
+	CreatePost(*pb.Post) (*pb.Post, error)
 	DeletePost(*pb.DeleteByPostId) (*pb.DeletePostRes, error)
 	UpdatePost(*pb.Post) (*pb.UpdatePostRes, error)
 	Getallpost(*pb.GetAllByPostId) ([]*pb.Post, error)

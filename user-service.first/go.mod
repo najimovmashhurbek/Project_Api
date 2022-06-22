@@ -1,9 +1,8 @@
-module github.com/najimovmashhurbek/project-api/user-service.ozim
+module github.com/najimovmashhurbek/Project_Api/user-service.first
 
 go 1.18
 
 require (
-	github.com/gofrs/uuid v4.2.0+incompatible
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0
 	github.com/jmoiron/sqlx v1.3.5

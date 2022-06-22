@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 14 07:00:26 2022
+# Make data base, printed on Wed Jun 22 07:43:52 2022
 
 # Variables
 
@@ -43,15 +43,15 @@ GDMSESSION = ubuntu
 # environment
 XMODIFIERS = @im=ibus
 # makefile
-CURDIR := /home/mashhurbek/go/src/github.com/najimovmashhurbek/project-api/post-service.ozim
+CURDIR := /home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api/post-service.first
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/98
+SNAP_DATA = /var/snap/code/99
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:50964
+JOURNAL_STREAM = 8:50166
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -77,9 +77,9 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-_ = /snap/code/98/usr/share/code/code
+_ = /snap/code/99/usr/share/code/code
 # environment
-MANAGERPID = 1706
+MANAGERPID = 1691
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -89,25 +89,25 @@ VSCODE_CWD = /home/mashhurbek
 # environment
 GOPROXY = https://proxy.golang.org,direct
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/98/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/99/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/mashhurbek/go/bin:/home/mashhurbek/go/bin:/usr/local/go/bin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/mashhurbek:@/tmp/.ICE-unix/1934,unix/mashhurbek:/tmp/.ICE-unix/1934
+SESSION_MANAGER = local/mashhurbek:@/tmp/.ICE-unix/1917,unix/mashhurbek:/tmp/.ICE-unix/1917
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/mashhurbek/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/98
+SNAP = /snap/code/99
 # environment
 GOPATH = /home/mashhurbek/go
 # environment
-SNAP_VERSION = 4af164ea
+SNAP_VERSION = 30d9c6cd
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -117,9 +117,9 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = b6e758fd1fca4ae685d2ba287f827f0f
+INVOCATION_ID = 571d96e522fa4a5a92888a9239fe8682
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/98/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink guile load
 # environment
@@ -129,7 +129,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 55729
+GIO_LAUNCHED_DESKTOP_FILE_PID = 50364
 # automatic
 %F = $(notdir $%)
 # environment
@@ -139,11 +139,11 @@ VSCODE_PIPE_LOGGING = true
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-PWD = /home/mashhurbek/go/src/github.com/najimovmashhurbek/project-api/post-service.ozim
+PWD = /home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api/post-service.first
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1894
+SSH_AGENT_PID = 1879
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -157,7 +157,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/mashhurbek/.config/Code/CachedData/4af164ea3a06f701fe3e89a2bcbb421d2026b68f
+VSCODE_CODE_CACHE_PATH = /home/mashhurbek/.config/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
 # environment
 LOGNAME = mashhurbek
 # environment
@@ -189,19 +189,19 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/mashhurbek/snap/code/98
+SNAP_USER_DATA = /home/mashhurbek/snap/code/99
 # environment
 SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-edf8ec01-04c1-4c8b-98a8-a33e24a3e4d2.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6ca82379-2af7-44c2-9837-c5232da26c3b.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
 USER = mashhurbek
 # environment
-SNAP_REVISION = 98
+SNAP_REVISION = 99
 # environment
 LC_MONETARY = uz_UZ.UTF-8
 # makefile
@@ -219,7 +219,7 @@ MAKE_COMMAND := make
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-a9e5b7e7-1.68.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-a9e5b7e7-1.68.1-main.sock
 # makefile (from 'Makefile', line 1)
 CURRENT_DIR = $(shell pwd)
 # environment
@@ -236,8 +236,6 @@ MFLAGS = -pqrR
 GDK_BACKEND = x11
 # environment
 LC_PAPER = uz_UZ.UTF-8
-# environment
-NO_AT_BRIDGE = 1
 # environment
 LC_IDENTIFICATION = uz_UZ.UTF-8
 # environment
@@ -270,7 +268,6 @@ CHROME_DESKTOP = code-url-handler.desktop
 WINDOWPATH = 2
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
- 
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # default
@@ -280,9 +277,9 @@ LC_ADDRESS = uz_UZ.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 55047
+VSCODE_PID = 50412
 # variable set hash-table stats:
-# Load=134/1024=13%, Rehash=0, Collisions=25/159=16%
+# Load=133/1024=13%, Rehash=0, Collisions=25/158=16%
 
 # Pattern-specific Variable Values
 
@@ -290,9 +287,9 @@ VSCODE_PID = 55047
 
 # Directories
 
-# . (device 2050, inode 45221705): 18 files, no impossibilities.
+# . (device 2050, inode 44566524): 16 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -301,6 +298,7 @@ VSCODE_PID = 55047
 # Files
 
 # Not a target:
+ 
 all:
 #  Command line target.
 #  Implicit rule search has been done.
@@ -318,7 +316,7 @@ proto-gen:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 07:41:29.890050319
+#  Last modified 2022-06-10 07:41:29.89005
 #  File has been updated.
 #  Successfully updated.
 
@@ -328,14 +326,12 @@ build:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 4):
 	CGO_ENABLED=0 GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ${CURRENT_DIR}/bin/${APP} ${APP_CMD_DIR}/main.go
- 
 
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 
 # files hash-table stats:
 # Load=6/1024=1%, Rehash=0, Collisions=0/16=0%
@@ -345,12 +341,12 @@ build:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 25 / storage = 189 B / avg = 7 B
-# current buf: size = 8162 B / used = 189 B / count = 25 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 23 / storage = 179 B / avg = 7 B
+# current buf: size = 8162 B / used = 179 B / count = 23 / avg = 7 B
 
-# strcache performance: lookups = 31 / hit rate = 19%
+# strcache performance: lookups = 29 / hit rate = 20%
 # hash-table stats:
-# Load=25/8192=0%, Rehash=0, Collisions=1/31=3%
-# Finished Make data base on Tue Jun 14 07:00:26 2022
+# Load=23/8192=0%, Rehash=0, Collisions=1/29=3%
+# Finished Make data base on Wed Jun 22 07:43:52 2022
 
  

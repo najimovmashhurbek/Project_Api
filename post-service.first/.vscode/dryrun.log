@@ -1,5 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/mashhurbek/go/src/github.com/najimovmashhurbek/project-api/post-service.ozim'
-CGO_ENABLED=0 GOOS=linux go build -mod=vendor -a -installsuffix cgo -o /home/mashhurbek/go/src/github.com/najimovmashhurbek/project-api/post-service.ozim/bin/ /main.go
-make: Leaving directory '/home/mashhurbek/go/src/github.com/najimovmashhurbek/project-api/post-service.ozim'
+make: Entering directory '/home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api/post-service.first'
+ 
+CGO_ENABLED=0 GOOS=linux go build -mod=vendor -a -installsuffix cgo -o /home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api/post-service.first/bin/ /main.go
+make: Leaving directory '/home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api/post-service.first'
  

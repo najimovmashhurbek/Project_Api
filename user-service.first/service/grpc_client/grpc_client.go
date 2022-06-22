@@ -3,8 +3,8 @@ package grpcClient
 import (
 	"fmt"
 
-	"github.com/najimovmashhurbek/project-api/user-service.ozim/config"
-	pb "github.com/najimovmashhurbek/project-api/user-service.ozim/genproto"
+	"github.com/najimovmashhurbek/Project_Api/user-service.first/config"
+	pb "github.com/najimovmashhurbek/Project_Api/user-service.first/genproto"
 	"google.golang.org/grpc"
 )
 

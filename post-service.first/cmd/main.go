@@ -3,11 +3,11 @@ package main
 import (
 	"net"
 
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/config"
-	pb "github.com/najimovmashhurbek/project-api/post-service.ozim/genproto"
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/pkg/db"
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/pkg/logger"
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/service"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/config"
+	pb "github.com/najimovmashhurbek/Project_Api/post-service.first/genproto"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/pkg/db"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/service"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

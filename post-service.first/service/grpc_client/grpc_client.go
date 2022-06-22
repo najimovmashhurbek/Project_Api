@@ -1,7 +1,7 @@
 package grpcClient
 
 import (
-	"github.com/najimovmashhurbek/project-api/post-service.ozim/config"
+	"github.com/najimovmashhurbek/Project_Api/post-service.first/config"
 )
 
 //GrpcClientI ...

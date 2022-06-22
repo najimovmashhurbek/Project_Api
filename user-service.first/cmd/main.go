@@ -3,12 +3,12 @@ package main
 import (
 	"net"
 
-	"github.com/najimovmashhurbek/project-api/user-service.ozim/config"
-	pb "github.com/najimovmashhurbek/project-api/user-service.ozim/genproto"
-	"github.com/najimovmashhurbek/project-api/user-service.ozim/pkg/db"
-	"github.com/najimovmashhurbek/project-api/user-service.ozim/pkg/logger"
-	"github.com/najimovmashhurbek/project-api/user-service.ozim/service"
-	grpcClient "github.com/najimovmashhurbek/project-api/user-service.ozim/service/grpc_client"
+	"github.com/najimovmashhurbek/Project_Api/user-service.first/config"
+	pb "github.com/najimovmashhurbek/Project_Api/user-service.first/genproto"
+	"github.com/najimovmashhurbek/Project_Api/user-service.first/pkg/db"
+	"github.com/najimovmashhurbek/Project_Api/user-service.first/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/user-service.first/service"
+	grpcClient "github.com/najimovmashhurbek/Project_Api/user-service.first/service/grpc_client"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

@@ -3,7 +3,7 @@ syntax = "proto3";
 package user;
 import "post.proto";
 service userService {
-    rpc CreateUser(User) returns (CreatePostRes);
+    rpc CreateUser(User) returns (User);
     rpc DeleteUser(DeleteById) returns (DeleteUserRes);
     rpc UpdateUser(User) returns (UpdateUserRes);
     rpc GetAllUser(GetAllById) returns (User);

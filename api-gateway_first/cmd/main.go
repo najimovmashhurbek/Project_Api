@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/api"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/config"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/pkg/logger"
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/services"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/api"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/config"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/logger"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/services"
 )
 
 func main() {

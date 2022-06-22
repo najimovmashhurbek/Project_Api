@@ -3,8 +3,8 @@ package services
 import (
 	"fmt"
 
-	"github.com/najimovmashhurbek/project-api/api-gateway.ozim/config"
-	pb "github.com/najimovmashhurbek/project-api/api-gateway.ozim/genproto"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/config"
+	pb "github.com/najimovmashhurbek/Project_Api/api-gateway_first/genproto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/resolver"
