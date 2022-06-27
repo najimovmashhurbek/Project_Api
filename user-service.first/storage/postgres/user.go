@@ -21,23 +21,26 @@ func NewUserRepo(db *sqlx.DB) *userRepo {
 
 func (r *userRepo) CreateUser(user *pb.User) (*pb.User, error) {
 	userr := pb.User{}
-	query := "insert into users (id,name,firstName,lastName,bio,phoneNumbers,createdAt,status) values ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id,name,firstName,lastName,bio,createdAt,status"
+	query := "insert into users (id,firstName,lastName,bio,phoneNumbers,createdAt,status,email,username,password) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id,firstName,lastName,bio,createdAt,status,email,username,password"
 	time := time.Now()
 	id := uuid.New()
-	err := r.db.QueryRow(query, id, user.Name, user.FirstName, user.LastName, user.Bio, pq.Array(user.PhoneNumbers), time, user.Status).Scan(
+	err := r.db.QueryRow(query, id, user.FirstName, user.LastName, user.Bio, pq.Array(user.PhoneNumbers), time, user.Status,user.Email,user.Username,user.Password).Scan(
 		&userr.Id,
-		&userr.Name,
 		&userr.FirstName,
 		&userr.LastName,
 		&userr.Bio,
 		&userr.CreatedAt,
 		&userr.Status,
+		pq.Array(&userr.PhoneNumbers),
+		&userr.Email,
+		&userr.Username,
+		&userr.Password,
 	)
 	if err != nil {
 		return nil, err
 	}
 	//defer r.db.Close()
-	adress:=pb.Adress{}
+	adress := pb.Adress{}
 	for _, adres := range user.Adress {
 		adid := uuid.New()
 		query1 := "insert into adress (id,users_id,country,city,district,postalCodes) values ($1,$2,$3,$4,$5,$6) RETURNING id,users_id,country,city,district,postalCodes"
@@ -52,7 +55,7 @@ func (r *userRepo) CreateUser(user *pb.User) (*pb.User, error) {
 		if err != nil {
 			return nil, err
 		}
-		userr.Adress=append(userr.Adress,&adress)
+		userr.Adress = append(userr.Adress, &adress)
 	}
 	return &userr, nil
 }
@@ -160,4 +163,18 @@ func (r *userRepo) ListUsers(limit, page int64) ([]*pb.User, int64, error) {
 		return nil, 0, err
 	}
 	return users, count, nil
+}
+func (r *userRepo) CheckUniquess(field, value string) (bool, error) {
+	var exists int64
+	query := "SELECT count(1) FROM users WHERE $1=$2"
+	err := r.db.QueryRow(query, field, value).Scan(
+		&exists,
+	)
+	if err != nil {
+		return false, err
+	}
+	if exists > 0 {
+		return true, nil
+	}
+	return false, nil
 }

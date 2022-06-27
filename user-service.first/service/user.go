@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	_ "errors"
+	"fmt"
 
 	"github.com/jmoiron/sqlx"
 	pb "github.com/najimovmashhurbek/Project_Api/user-service.first/genproto"
@@ -40,14 +41,15 @@ func (s *UserService) CreateUser(ctx context.Context, req *pb.User) (*pb.User, e
 	if err != nil {
 		return nil, err
 	}
-	if req.Adress != nil {
-		for _, adres := range req.Adress {
-			adres.UserId = req.Id
-		}
-	}
+	// if req.Adress != nil {
+	// 	for _, adres := range req.Adress {
+	// 		adres.UserId = req.Id
+	// 	}
+	// }
+	fmt.Println(req.Id)
 	if req.Post != nil {
 		for _, post := range req.Post {
-			post.UserId = req.Id
+			post.UserId = user.Id
 			_, err := s.client.PostService().CreatePost(ctx, post)
 			if err != nil {
 				return nil, err
@@ -105,5 +107,14 @@ func (s *UserService) ListUsers(ctx context.Context, req *pb.GetUsersReq) (*pb.G
 	return &pb.GetUsersRes{
 		Users: users,
 		Count: count,
+	}, nil
+}
+func (s *UserService) CheckUniquess(ctx context.Context, req *pb.CheckUniqReq) (*pb.CheckUniqResp, error) {
+	exists, err := s.storage.User().CheckUniquess(req.Field, req.Value)
+	if err != nil {
+		return nil, err
+	}
+	return &pb.CheckUniqResp{
+		IsExist: exists,
 	}, nil
 }

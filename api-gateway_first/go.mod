@@ -3,6 +3,7 @@ module github.com/najimovmashhurbek/Project_Api/api-gateway_first
 go 1.18
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.8.1
 	github.com/golang/protobuf v1.5.2
 	github.com/spf13/cast v1.5.0

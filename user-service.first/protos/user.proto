@@ -8,8 +8,16 @@ service userService {
     rpc UpdateUser(User) returns (UpdateUserRes);
     rpc GetAllUser(GetAllById) returns (User);
     rpc ListUsers(GetUsersReq) returns (GetUsersRes);
+    rpc CheckUniquess(CheckUniqReq) returns (CheckUniqResp);
 }
 
+message CheckUniqReq {
+    string field=1;
+    string value =2;
+}
+message CheckUniqResp{
+    bool is_exist=1;
+}
 message GetUsersReq{
     int64 limit=1;
     int64 page=2;
@@ -29,17 +37,19 @@ message UpdateUserRes{
 }
 message User {
     string id = 1;
-    string name = 2;
-    string firstName = 3;
-    string lastName =4;
-    string bio=6;
-    repeated string phoneNumbers=7;
-    string status=8;
-    string createdAt = 9;
-    string updateAt =10;
-    string deletedAt =11;
-    repeated Adress adress=12;
-    repeated Post post =13;
+    string firstName = 2;
+    string lastName =3;
+    string bio=4;
+    repeated string phoneNumbers=5;
+    string status=6;
+    string createdAt = 7;
+    string updateAt =8;
+    string deletedAt =9;
+    string username=10;
+    string email =11;
+    string password=12;
+    repeated Adress adress=13;
+    repeated Post post =14;
 }
 message User1{
     repeated User users=1;

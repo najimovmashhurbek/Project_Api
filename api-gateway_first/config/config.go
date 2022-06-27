@@ -18,6 +18,8 @@ type Config struct {
 
 	LogLevel string
 	HTTPPort string
+
+	SigninKey string
 }
 
 // Load loads environment vars and inflates Config
@@ -27,10 +29,10 @@ func Load() Config {
 	c.Environment = cast.ToString(getOrReturnDefault("ENVIRONMENT", "develop"))
 
 	c.LogLevel = cast.ToString(getOrReturnDefault("LOG_LEVEL", "debug"))
-	c.HTTPPort = cast.ToString(getOrReturnDefault("HTTP_PORT", ":8080"))
+	c.HTTPPort = cast.ToString(getOrReturnDefault("HTTP_PORT", ":8090"))
 	c.UserServiceHost = cast.ToString(getOrReturnDefault("USER_SERVICE_HOST", "127.0.0.1"))
 	c.UserServicePort = cast.ToInt(getOrReturnDefault("USER_SERVICE_PORT", 9000))
-
+	c.SigninKey = cast.ToString(getOrReturnDefault("signin_Key", "ecytvcmjykingtppsouzdehlwsigjzhewjyjbwuwszsmbzyfazzfqrqccbhlqlnbcqtfnhjiltqtxwyxqjogjlutcyfgicuibvdcjesjxyrxrrugcltaznwpfwhwrbfwecxzmnzqohjffjdznokhxtqnmfgqpjrs"))
 	c.CtxTimeout = cast.ToInt(getOrReturnDefault("CTX_TIMEOUT", 7))
 
 	return c

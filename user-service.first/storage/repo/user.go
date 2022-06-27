@@ -11,4 +11,5 @@ type UserStorageI interface {
 	UpdateUser(*pb.User) (*pb.UpdateUserRes, error)
 	GetAllUser(*pb.GetAllById) (*pb.User, error)
 	ListUsers(limit, page int64) ([]*pb.User, int64, error)
+	CheckUniquess(field, value string) (bool, error)
 }
