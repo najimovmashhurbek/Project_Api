@@ -12,4 +12,5 @@ type UserStorageI interface {
 	GetAllUser(*pb.GetAllById) (*pb.User, error)
 	ListUsers(limit, page int64) ([]*pb.User, int64, error)
 	CheckUniquess(field, value string) (bool, error)
+	LoginUser(*pb.LoginRequest) (*pb.User, error)
 }

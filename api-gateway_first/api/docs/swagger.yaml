@@ -13,6 +13,13 @@ definitions:
       postal_codes:
         type: integer
     type: object
+  v1.Emailver:
+    properties:
+      Code:
+        type: string
+      Email:
+        type: string
+    type: object
   v1.Media:
     properties:
       link:
@@ -45,19 +52,23 @@ definitions:
         type: array
       bio:
         type: string
-      created_at:
+      code:
         type: string
-      deleted_at:
+      createdAt:
         type: string
-      first_name:
+      deletedAt:
         type: string
-      last_name:
+      email:
         type: string
-      name:
-        description: Id                   string    `protobuf:"bytes,1,opt,name=id,proto3"
-          json:"id"`
+      firstName:
         type: string
-      phone_numbers:
+      id:
+        type: string
+      lastName:
+        type: string
+      password:
+        type: string
+      phoneNumbers:
         items:
           type: string
         type: array
@@ -67,7 +78,9 @@ definitions:
         type: array
       status:
         type: string
-      update_at:
+      updateAt:
+        type: string
+      username:
         type: string
     type: object
 info:
@@ -75,6 +88,8 @@ info:
 paths:
   /v1/users:
     get:
+      consumes:
+      - application/json
       description: This api is using for getting users list
       parameters:
       - description: limit
@@ -98,6 +113,8 @@ paths:
       tags:
       - user
     post:
+      consumes:
+      - application/json
       description: This api is using for creating new user
       parameters:
       - description: user body
@@ -136,6 +153,8 @@ paths:
       tags:
       - user
     get:
+      consumes:
+      - application/json
       description: This api is using for getting user by id
       parameters:
       - description: User ID
@@ -154,6 +173,8 @@ paths:
       tags:
       - user
     put:
+      consumes:
+      - application/json
       description: This api is using for updating new user
       parameters:
       - description: User ID
@@ -175,6 +196,70 @@ paths:
           schema:
             type: string
       summary: Update user summary
+      tags:
+      - user
+  /v1/users/login/{email}/{password}:
+    post:
+      consumes:
+      - application/json
+      description: This api using for logging registered user
+      parameters:
+      - description: Email
+        in: path
+        name: email
+        required: true
+        type: string
+      - description: Password
+        in: path
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      tags:
+      - user
+  /v1/users/register:
+    post:
+      consumes:
+      - application/json
+      description: This api is using for registering new user
+      parameters:
+      - description: user_body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/v1.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Register user summary
+      tags:
+      - user
+  /v1/users/verfication:
+    post:
+      consumes:
+      - application/json
+      description: This api using for verifying registered user
+      parameters:
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/v1.Emailver'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
       tags:
       - user
 swagger: "2.0"

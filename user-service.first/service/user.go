@@ -118,3 +118,20 @@ func (s *UserService) CheckUniquess(ctx context.Context, req *pb.CheckUniqReq) (
 		IsExist: exists,
 	}, nil
 }
+
+func (s *UserService) LoginUser(ctx context.Context, req *pb.LoginRequest) (*pb.User, error) {
+	user, err := s.storage.User().LoginUser(req)
+	fmt.Println(user,"----------")
+	if err != nil {
+		return nil, err
+	}
+	postS, err := s.client.PostService().Getallpost(ctx, &pb.GetAllByPostId{
+		Id: user.Id,
+	})
+	if err != nil {
+		return nil, err
+	}
+	user.Post = postS.Response
+
+	return user, nil
+}

@@ -15,7 +15,8 @@ type Config struct {
 
 	// context timeout in seconds
 	CtxTimeout int
-
+	RedisHost string
+	RedisPort int
 	LogLevel string
 	HTTPPort string
 
@@ -34,7 +35,8 @@ func Load() Config {
 	c.UserServicePort = cast.ToInt(getOrReturnDefault("USER_SERVICE_PORT", 9000))
 	c.SigninKey = cast.ToString(getOrReturnDefault("signin_Key", "ecytvcmjykingtppsouzdehlwsigjzhewjyjbwuwszsmbzyfazzfqrqccbhlqlnbcqtfnhjiltqtxwyxqjogjlutcyfgicuibvdcjesjxyrxrrugcltaznwpfwhwrbfwecxzmnzqohjffjdznokhxtqnmfgqpjrs"))
 	c.CtxTimeout = cast.ToInt(getOrReturnDefault("CTX_TIMEOUT", 7))
-
+	c.RedisHost = cast.ToString(getOrReturnDefault("REDIS_HOST", "localhost"))
+	c.RedisPort = cast.ToInt(getOrReturnDefault("REDIS_PORT", 6379))
 	return c
 }
 

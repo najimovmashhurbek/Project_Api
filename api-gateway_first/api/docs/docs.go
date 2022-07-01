@@ -19,6 +19,9 @@ const docTemplate = `{
         "/v1/users": {
             "get": {
                 "description": "This api is using for getting users list",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -53,6 +56,9 @@ const docTemplate = `{
             },
             "post": {
                 "description": "This api is using for creating new user",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -81,9 +87,110 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/users/login/{email}/{password}": {
+            "post": {
+                "description": "This api using for logging registered user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "email",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Password",
+                        "name": "password",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/v1/users/register": {
+            "post": {
+                "description": "This api is using for registering new user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Register user summary",
+                "parameters": [
+                    {
+                        "description": "user_body",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/users/verfication": {
+            "post": {
+                "description": "This api using for verifying registered user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "user body",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1.Emailver"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/users/{id}": {
             "get": {
                 "description": "This api is using for getting user by id",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -111,6 +218,9 @@ const docTemplate = `{
             },
             "put": {
                 "description": "This api is using for updating new user",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -193,6 +303,17 @@ const docTemplate = `{
                 }
             }
         },
+        "v1.Emailver": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "string"
+                },
+                "Email": {
+                    "type": "string"
+                }
+            }
+        },
         "v1.Media": {
             "type": "object",
             "properties": {
@@ -236,23 +357,31 @@ const docTemplate = `{
                 "bio": {
                     "type": "string"
                 },
-                "created_at": {
+                "code": {
                     "type": "string"
                 },
-                "deleted_at": {
+                "createdAt": {
                     "type": "string"
                 },
-                "first_name": {
+                "deletedAt": {
                     "type": "string"
                 },
-                "last_name": {
+                "email": {
                     "type": "string"
                 },
-                "name": {
-                    "description": "Id                   string    ` + "`" + `protobuf:\"bytes,1,opt,name=id,proto3\" json:\"id\"` + "`" + `",
+                "firstName": {
                     "type": "string"
                 },
-                "phone_numbers": {
+                "id": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phoneNumbers": {
                     "type": "array",
                     "items": {
                         "type": "string"
@@ -267,7 +396,10 @@ const docTemplate = `{
                 "status": {
                     "type": "string"
                 },
-                "update_at": {
+                "updateAt": {
+                    "type": "string"
+                },
+                "username": {
                     "type": "string"
                 }
             }
