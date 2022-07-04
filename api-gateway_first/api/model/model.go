@@ -34,6 +34,17 @@ type Media struct {
 	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type"`
 	Link string `protobuf:"bytes,3,opt,name=link,proto3" json:"link"`
 }
+
 type JwtRequestModel struct {
-	Token string `json:"token`
+	Token string `string:"token"`
+}
+
+type ResponseError struct {
+	Error interface{} `json:"error"`
+}
+
+// ServerError ...
+type ServerError struct {
+	Status  string `json:"status"`
+	Message string `json:"message"`
 }

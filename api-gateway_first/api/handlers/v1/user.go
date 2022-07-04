@@ -21,7 +21,6 @@ import (
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/auth"
 	pb "github.com/najimovmashhurbek/Project_Api/api-gateway_first/genproto"
 	l "github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/logger"
-	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/utils"
 	"golang.org/x/crypto/bcrypt"
 	"google.golang.org/protobuf/encoding/protojson"
 	gomail "gopkg.in/mail.v2"
@@ -73,8 +72,6 @@ type RegisterResponse struct {
 	Accesstoken  string
 	Refreshtoken string
 }
-
-
 
 // CreateUser creates user
 // @Summary Create user summary
@@ -159,16 +156,27 @@ func (h *handlerV1) GetUser(c *gin.Context) {
 // @Success 200 {string} User
 // @Router /v1/users [get]
 func (h *handlerV1) ListUsers(c *gin.Context) {
-	queryParams := c.Request.URL.Query()
-	params, errStr := utils.ParseQueryParams(queryParams)
-	if errStr != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": errStr[0],
+	p := c.Query("page")
+	l := c.Query("limit")
+
+	CheckClaims(h, c)
+
+	page, err := strconv.ParseInt(p, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
 		})
-		h.log.Error("failed to parse query params json" + errStr[0])
 		return
 	}
 
+	limit, err := strconv.ParseInt(l, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		h.log.Error("failed to parsing limit or page to conv")
+		return
+	}
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
@@ -177,14 +185,14 @@ func (h *handlerV1) ListUsers(c *gin.Context) {
 
 	response, err := h.serviceManager.UserService().ListUsers(
 		ctx, &pb.GetUsersReq{
-			Limit: params.Limit,
-			Page:  params.Page,
+			Page:  page,
+			Limit: limit,
 		})
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
-		h.log.Error("failed to list users", l.Error(err))
+		h.log.Error("failed to getting user listing")
 		return
 	}
 	c.JSON(http.StatusOK, response)
@@ -363,7 +371,7 @@ func (h *handlerV1) Register(c *gin.Context) {
 		return
 	}
 	//writing redis
-	err = h.redisStorage.SetWithTTL(body.Email, string(bodyByte), int64(time.Minute*5))
+	err = h.redisStorage.SetWithTTL(body.Email, string(bodyByte), int64(time.Second*150))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -432,21 +440,21 @@ func (h *handlerV1) VerifyUser(c *gin.Context) {
 	}
 
 	id, err := uuid.NewUUID()
-	if err!=nil{
+	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "error while generating uuid",
 		})
 		h.log.Error("error generate new uuid", l.Error(err))
 		return
 	}
-	h.jwtHandler=auth.JwtHandler{
-		Sub: id.String(),
-		Iss:"client",
+	h.jwtHandler = auth.JwtHandler{
+		Sub:  id.String(),
+		Iss:  "client",
 		Role: "authorized",
-		Log: h.log,
+		Log:  h.log,
 	}
-	access,refresh,err:=h.jwtHandler.GenerateJWT()
-	if err!=nil{
+	access, refresh, err := h.jwtHandler.GenerateJWT()
+	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "error while generating jwt",
 		})
@@ -456,9 +464,9 @@ func (h *handlerV1) VerifyUser(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, &RegisterResponse{
-		UserID: id.String(),
-		Accesstoken: access,
-		Refreshtoken: refresh ,
+		UserID:       id.String(),
+		Accesstoken:  access,
+		Refreshtoken: refresh,
 	})
 }
 

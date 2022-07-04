@@ -2,14 +2,19 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/auth"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/casbin"
 	v1 "github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/handlers/v1"
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/config"
-	_ "github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/docs" //swag
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/logger"
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/services"
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/storage/repo"
+
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+
+	casbinN "github.com/casbin/casbin/v2"
+	_ "github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/docs"
 )
 
 // Option ...
@@ -18,6 +23,7 @@ type Option struct {
 	Logger         logger.Logger
 	ServiceManager services.IServiceManager
 	RedisRepo      repo.RepositoryStorage
+	Casbin         *casbinN.Enforcer
 }
 
 // New ...
@@ -26,6 +32,12 @@ func New(option Option) *gin.Engine {
 
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
+
+	jwtHandler := &auth.JwtHandler{
+		SigninKey: option.Conf.SigninKey,
+		Log:       option.Logger,
+	}
+	router.Use(casbin.NewJwtRoleStruct(option.Casbin, option.Conf, *jwtHandler))
 
 	handlerV1 := v1.New(&v1.HandlerV1Config{
 		Logger:         option.Logger,

@@ -1,14 +1,13 @@
 package v1
 
 import (
-	_"errors"
-	_"net/http"
+	"errors"
+	"net/http"
 
-	
-	_"github.com/dgrijalva/jwt-go"
-	_"github.com/gin-gonic/gin"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/auth"
-	_"github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/model"
+	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/api/model"
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/config"
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/pkg/logger"
 	"github.com/najimovmashhurbek/Project_Api/api-gateway_first/services"
@@ -43,9 +42,9 @@ func New(c *HandlerV1Config) *handlerV1 {
 	}
 }
 
-/*func CheckClaims(h *handlerV1, c *gin.Context) jwt.MapClaims {
+func CheckClaims(h *handlerV1, c *gin.Context) jwt.MapClaims {
 	var (
-		ErrUnauthotized = errors.New("unauthorized")
+		ErrUnauthorized = errors.New("unauthorized")
 		authorization   model.JwtRequestModel
 		claims          jwt.MapClaims
 		err             error
@@ -53,8 +52,16 @@ func New(c *HandlerV1Config) *handlerV1 {
 
 	authorization.Token = c.GetHeader("Authorization")
 	if c.Request.Header.Get("Authorization") == "" {
-		c.JSON(http.StatusUnauthorized, ErrUnauthotized)
-		h.log.Error()
+		c.JSON(http.StatusUnauthorized, ErrUnauthorized)
+		h.log.Error("Unauthorized request: ", logger.Error(ErrUnauthorized))
+		return nil
 	}
+	h.jwtHandler.Token = authorization.Token
+	claims, err = h.jwtHandler.ExtractClaims()
+	if err!=nil{
+		c.JSON(http.StatusUnauthorized, ErrUnauthorized)
+		h.log.Error("Token is invalid : ", logger.Error(ErrUnauthorized))
+		return nil	
 }
-*/
+return claims
+}
