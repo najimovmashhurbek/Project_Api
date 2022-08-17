@@ -1,0 +1,1 @@
+Alter table users ADD username varchar(200),ADD email varchar(200),ADD password varchar(200);

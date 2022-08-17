@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package user;
+import "post.proto";
+service userService {
+    rpc CreateUser(User) returns (User);
+    rpc DeleteUser(DeleteById) returns (DeleteUserRes);
+    rpc UpdateUser(User) returns (UpdateUserRes);
+    rpc GetAllUser(GetAllById) returns (User);
+    rpc ListUsers(GetUsersReq) returns (GetUsersRes);
+    rpc CheckUniquess(CheckUniqReq) returns (CheckUniqResp);
+    rpc LoginUser(LoginRequest) returns(User);
+
+}
+message LoginRequest{
+    string email=1;
+    string password=2;
+}
+message CheckUniqReq {
+    string field=1;
+    string value =2;
+}
+message CheckUniqResp{
+    bool is_exist=1;
+}
+message GetUsersReq{
+    int64 limit=1;
+    int64 page=2;
+}
+message GetUsersRes{
+    repeated User users=1;
+    int64 count=2;
+}
+message CreatePostRes{
+    bool status=1;
+}
+message DeleteUserRes{
+    bool status=1;
+}
+message UpdateUserRes{
+    bool status=1;
+}
+message User {
+    string id = 1;
+    string firstName = 2;
+    string lastName =3;
+    string bio=4;
+    repeated string phoneNumbers=5;
+    string status=6;
+    string createdAt = 7;
+    string updateAt =8;
+    string deletedAt =9;
+    string username=10;
+    string email =11;
+    string password=12;
+    repeated Adress adress=13;
+    repeated Post post =14;
+    string code=15;
+}
+message User1{
+    repeated User users=1;
+}
+
+ message Adress{
+     string id=1;
+     string user_id =2;
+     string country =3;
+     string city =4;
+     string district =5;
+     int64 postalCodes=6;
+}
+message DeleteById{
+    string id=1;
+}
+message GetAllById{
+    string id=1;
+}

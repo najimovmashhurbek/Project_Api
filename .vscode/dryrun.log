@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api'
+make: Leaving directory '/home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

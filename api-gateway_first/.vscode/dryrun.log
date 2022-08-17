@@ -1,6 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api/api-gateway_first'
- 
-CGO_ENABLED=0 GOOS=darwin go build -mod=vendor -a -installsuffix cgo -o /home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api/api-gateway_first/bin/template ./cmd/main.go
-make: Leaving directory '/home/mashhurbek/go/src/github.com/najimovmashhurbek/Project_Api/api-gateway_first'
- 

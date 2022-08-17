@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  user_service:
+    container_name: user_service
+    build: ./user-service
+    depends_on:
+      - "dbpost"
+      - "post_service"
+    ports:
+      - "9000:9000"
+
+  
+  post_service:
+    container_name: post_service
+    build: ./post-service
+    depends_on:
+      - "dbpost"
+    ports:
+      - "9100:9100"
+
+  
+  api:
+    container_name: api
+    build: ./api
+    depends_on:
+      - "redisdb"
+      - "user_service"
+      - "post_service"
+    ports:
+      - "8090:8090"
+
+
+  dbpost :
+    container_name: dbpost
+    image: postgres:14.1
+    # networks:
+    #   new:
+    #     aliases:
+    #       - database
+    environment:
+      POSTGRES_DATABASE: posts
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    expose:
+      - "5433"
+    ports:
+      - "5433:5433"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    command: -p 5433
+
+  
+  redisdb:
+    container_name: redisdb
+    image: redis
+    ports:
+      - "6379:6379"
+  
+
+  migrate:
+    image: migrate/migrate
+    # networks:
+      # - new
+    volumes:
+      - ./migrations:/migrations
+    command: 
+      ["-path", "/migrations", "-database",  "postgres://postgres:1234@dbpost:5433/users?sslmode=disable", "up"]
+    links: 
+      - dbpost
+    # depends_on:
+    #   - dbpost
+
+  
+
+# networks:
+#     new: 
+
+
+volumes:
+  dbdata:
